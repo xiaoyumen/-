@@ -11,7 +11,7 @@ import com.atguigu.gulimall.commons.bean.QueryCondition;
  *
  * @author xieweiquan
  * @email xx@atguigu.com
- * @date 2019-08-01 19:17:40
+ * @date 2019-08-01 21:12:37
  */
 public interface CommentReplayService extends IService<CommentReplayEntity> {
 

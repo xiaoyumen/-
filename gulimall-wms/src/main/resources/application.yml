@@ -1,0 +1,12 @@
+spring:
+  datasource:
+
+    #MySQL配置
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_wms?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+mybatis-plus:
+  mapper-locations: classpath:/mapper/wms/*.xml
+server:
+  port: 13000

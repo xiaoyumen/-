@@ -24,7 +24,7 @@ import com.atguigu.gulimall.sms.service.SpuBoundsService;
  *
  * @author xieweiquan
  * @email xx@atguigu.com
- * @date 2019-08-01 19:59:40
+ * @date 2019-08-01 21:16:16
  */
 @Api(tags = "商品spu积分设置 管理")
 @RestController

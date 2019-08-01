@@ -24,7 +24,7 @@ import com.atguigu.gulimall.pms.service.SkuSaleAttrValueService;
  *
  * @author xieweiquan
  * @email xx@atguigu.com
- * @date 2019-08-01 19:17:40
+ * @date 2019-08-01 21:12:36
  */
 @Api(tags = "sku销售属性&值 管理")
 @RestController

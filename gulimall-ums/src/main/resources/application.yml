@@ -1,0 +1,13 @@
+spring:
+  datasource:
+
+    #MySQL配置
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+mybatis-plus:
+  mapper-locations: classpath:/mapper/ums/*.xml
+
+server:
+  port: 14000

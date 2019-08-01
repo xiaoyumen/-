@@ -24,7 +24,7 @@ import com.atguigu.gulimall.pms.service.ProductAttrValueService;
  *
  * @author xieweiquan
  * @email xx@atguigu.com
- * @date 2019-08-01 19:17:40
+ * @date 2019-08-01 21:12:37
  */
 @Api(tags = "spu属性值 管理")
 @RestController
