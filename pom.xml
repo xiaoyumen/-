@@ -13,6 +13,7 @@
         <module>guli-generator</module>
         <module>gulimall-core</module>
         <module>gulimall-admin</module>
+        <module>gulimall-gateway</module>
     </modules>
 
 
