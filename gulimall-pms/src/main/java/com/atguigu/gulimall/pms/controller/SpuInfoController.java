@@ -7,6 +7,8 @@ import java.util.Map;
 import com.atguigu.gulimall.commons.bean.PageVo;
 import com.atguigu.gulimall.commons.bean.QueryCondition;
 import com.atguigu.gulimall.commons.bean.Resp;
+import com.atguigu.gulimall.pms.service.SkuInfoService;
+import com.atguigu.gulimall.pms.vo.SpuAllSaveVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,15 @@ import com.atguigu.gulimall.pms.service.SpuInfoService;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
+    @Autowired
+    private SkuInfoService skuInfoService;
+    @GetMapping("/simple/search")
+    public Resp<Object> querySpuInfoPage(QueryCondition queryCondition,
+                                         @RequestParam(value = "catId",defaultValue = "0") Long catId){
+        PageVo page = spuInfoService.queryPageByCatId(queryCondition,catId);
 
+        return Resp.ok(page);
+    }
     /**
      * 列表
      */
@@ -64,9 +74,9 @@ public class SpuInfoController {
     @ApiOperation("保存")
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('pms:spuinfo:save')")
-    public Resp<Object> save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
-
+    public Resp<Object> save(@RequestBody SpuAllSaveVo spuInfo){
+	//	spuInfoService.save(spuInfo);
+        skuInfoService.spuBigSaveAll(spuInfo);
         return Resp.ok(null);
     }
 
