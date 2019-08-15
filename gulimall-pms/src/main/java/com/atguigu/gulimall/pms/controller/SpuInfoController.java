@@ -36,6 +36,13 @@ public class SpuInfoController {
     private SpuInfoService spuInfoService;
     @Autowired
     private SkuInfoService skuInfoService;
+    ///pms/spuinfo/updateStatus
+    @GetMapping("/updateStatus/{spuId}")
+    public Resp<Object> updateSpuStatus(@RequestParam Integer status,@PathVariable Long spuId){
+
+        spuInfoService.updateSpuStates(spuId,status);
+        return Resp.ok(null);
+    }
     @GetMapping("/simple/search")
     public Resp<Object> querySpuInfoPage(QueryCondition queryCondition,
                                          @RequestParam(value = "catId",defaultValue = "0") Long catId){

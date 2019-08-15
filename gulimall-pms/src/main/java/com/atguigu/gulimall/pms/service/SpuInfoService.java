@@ -18,5 +18,7 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
     PageVo queryPage(QueryCondition params);
 
     PageVo queryPageByCatId(QueryCondition queryCondition, Long catId);
+
+    void updateSpuStates(Long spuId, Integer status);
 }
 

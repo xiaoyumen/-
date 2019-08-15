@@ -1,4 +1,5 @@
-
+server:
+  port: 88
 
 
 spring:
@@ -8,7 +9,9 @@ spring:
         - id: pms_route
           uri: lb://gulimall-pms
           predicates:
-            - Path=/pms/**
+            - Path=/pms/**,/api/index/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
 
         - id: gulimall-oms_route
           uri: lb://gulimall-oms
@@ -29,5 +32,35 @@ spring:
           uri: lb://gulimall-wms
           predicates:
             - Path=/wms/**
-server:
-  port: 88
+        - id: gulimall-search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
+
+
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#              allowedOrigins: "*"
+#              allowedMethods:
+#                - GET
+#                - POST
+#                - DELETE
+#                - PUT
+#                - OPTIONS
+#                - HEAD
+#              allowCredentials: true # \u5141\u8BB8\u643A\u5E26\u81EA\u5B9A\u4E49cookie\u8DE8\u57DF
+
+
+#      - id: world_route
+#        uri: lb://gulimall-pms
+#        predicates:
+#          - Path=/world
+#      - id: hello_route
+#        uri: lb://gulimall-oms
+#        predicates:
+#          - Path=/hello
+#        filters:
+#          - AddResponseHeader=leifengyang,666

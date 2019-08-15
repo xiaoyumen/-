@@ -1,5 +1,11 @@
 package com.atguigu.gulimall.pms.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.atguigu.gulimall.commons.bean.Constant;
+import com.atguigu.gulimall.pms.vo.CategoryWithChildrensVo;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +25,10 @@ import com.atguigu.gulimall.pms.service.CategoryService;
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
+    @Autowired
+    CategoryDao categoryDao;
+    @Autowired
+    StringRedisTemplate redisTemplate;
     @Override
     public PageVo queryPage(QueryCondition params) {
         IPage<CategoryEntity> page = this.page(
@@ -49,6 +59,22 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         List<CategoryEntity> list = baseMapper.selectList(queryWrapper);
         return list;
+    }
+
+    @Override
+    public List<CategoryWithChildrensVo> getCategoryChildrensAndSubById(Integer id) {
+
+        List<CategoryWithChildrensVo> vos=null;
+
+        String s = redisTemplate.opsForValue().get(Constant.CACHE_CATELOG);
+        if (!StringUtils.isEmpty(s)){
+         vos= JSON.parseArray(s,CategoryWithChildrensVo.class);
+        }else {
+            //1.缓存中没有，查数据库
+            vos =categoryDao.selectCategoryChildrenWithChildrens(id);
+
+        }
+        return vos;
     }
 
 }

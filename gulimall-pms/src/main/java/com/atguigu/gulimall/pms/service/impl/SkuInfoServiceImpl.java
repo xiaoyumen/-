@@ -65,7 +65,6 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     }
 
  @GlobalTransactional
-    //@Transactional
     @Override
     public void spuBigSaveAll(SpuAllSaveVo spuInfo) {
         SkuInfoService proxy = (SkuInfoService) AopContext.currentProxy();
@@ -79,7 +78,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         proxy.saveSpuBaseAttrs(spuId,baseAttrs);
         //3.保存sku以及sku的营销相关信息
         proxy.saveSkuInfos(spuId,spuInfo.getSkus());
-        int i=10/0;
+        //int i=10/0;
     }
 
     //负责解析出数据做出相应的业务
